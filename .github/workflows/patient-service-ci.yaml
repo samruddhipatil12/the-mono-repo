@@ -2,7 +2,8 @@ name: Build patient-service image
 
 on:
   push:
-    paths: hospital-management/patient-service/**
+   paths:
+      - hospital-management/**
 
 jobs:
   build-and-push:
