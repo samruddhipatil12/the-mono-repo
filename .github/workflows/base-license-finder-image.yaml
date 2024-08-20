@@ -2,7 +2,8 @@ name: base-image-build
 
 on:
   push: 
-    paths: dev-sec-ops/base-images/**
+    paths: "dev-sec-ops/base-images/**"
+
 
 jobs:
   build-base-images:
@@ -22,4 +23,3 @@ jobs:
 
       - name: Docker push
         run: docker push ${{secrets.DOCKER_REGISTRY_USER}}/license-finder:latest  
-        
