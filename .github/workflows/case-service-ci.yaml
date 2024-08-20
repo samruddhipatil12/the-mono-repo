@@ -1,4 +1,4 @@
-name: Build Case Service
+name: Build case-service Image
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - hospital-management/case-service/**
 
 jobs:
-  build-and-push-case-service:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,15 +16,18 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
           distribution: 'temurin'
+          java-version: '17'
 
       - name: Perform Google formatter check
-        run: mvn com.spotify.fmt:fmt-maven-plugin:check
-        working-directory: hospital-management/case-service
+        run: |
+          cd hospital-management/case-service
+          mvn com.spotify.fmt:fmt-maven-plugin:check
 
       - name: GitLeaks Scan
         uses: zricethezav/gitleaks-action@v1.3.0
+        with:
+          args: --path=hospital-management/case-service
 
       - name: OSS Scan
         run: mvn ossindex:audit
@@ -32,17 +35,21 @@ jobs:
 
       - name: OWASP Scan
         if: false
-        run: mvn org.owasp:dependency-check-maven:check
+        run: |
+          cd hospital-management/directory-service
+          mvn org.owasp:dependency-check-maven:check
 
-      - name: Build code and create docker images
-        run: mvn clean install docker:build -Dimage.registry=${{secrets.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
-        working-directory: hospital-management/case-service
-        
-      - name: Log in to GitHub Docker Registry
+      - name: Build code and create docker image
+        run: |
+          cd hospital-management/case-service
+          mvn clean install
+          docker build -t ${{ secrets.DOCKER_REGISTRY_USER }}/case-service:latest .
+
+      - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_REGISTRY_USER }}
           password: ${{ secrets.DOCKER_REGISTRY_PAT }}
 
-      - name: Push docker images
-        run: docker push ${{secrets.CONTAINER_REGISTRY_URL}}/case-service:$GITHUB_REF_NAME
+      - name: Push Docker Image for case-service
+        run: docker push ${{ secrets.DOCKER_REGISTRY_USER }}/case-service:latest
