@@ -1,0 +1,24 @@
+name: Build Hospital Console 
+
+on:
+  push:
+    paths:
+      - hospital-management/**
+ 
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build code
+        working-directory: hospital-management/hospital-console-fxml
+        run: mvn clean install
