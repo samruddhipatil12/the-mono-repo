@@ -1,0 +1,11 @@
+# Use a base image with JDK
+FROM samruddhipatil12/openjdk-24-jdk
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the application JAR file
+COPY . /app
+
+# Start the application
+CMD ["java", "-jar","patient-service.jar"]
