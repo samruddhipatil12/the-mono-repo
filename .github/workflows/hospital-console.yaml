@@ -19,5 +19,5 @@ jobs:
           java-version: '17'
 
       - name: Build code
-        working-directory: hospital-management/hospital-console-fxml
+        working-directory: hospital-management/hospital-console
         run: mvn clean install
