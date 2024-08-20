@@ -1,5 +1,4 @@
 
-# Use a base image with the required runtime environment
 # Use a base image with JDK
 FROM samruddhipatil12/open-jdk
 
