@@ -15,4 +15,4 @@ RUN gem install license_finder
 WORKDIR /scan
 
 # Command to run license_finder
-ENTRYPOINT ["license_finder"]
+ENTRYPOINT ["license_finder"] 
