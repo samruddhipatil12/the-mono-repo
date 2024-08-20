@@ -2,8 +2,7 @@ name: Build Hospital Console
 
 on:
   push:
-    paths:
-      - hospital-management/**
+    paths: hospital-management/**
  
 jobs:
   build-and-push:
