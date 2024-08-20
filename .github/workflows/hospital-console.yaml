@@ -2,8 +2,9 @@ name: Build Hospital Console
 
 on:
   push:
-    paths: hospital-management/hospital-console/**
+    paths: hospital-management/**
 
+ 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -19,5 +20,5 @@ jobs:
           java-version: '17'
 
       - name: Build code
-        working-directory: hospital-management/hospital-console
+        working-directory: hospital-management/hospital-console-fxml
         run: mvn clean install
