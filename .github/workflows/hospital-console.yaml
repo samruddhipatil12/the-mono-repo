@@ -2,10 +2,8 @@ name: Build Hospital Console
 
 on:
   push:
-    paths:
-      - hospital-management/hospital-console/**
+    paths: hospital-management/hospital-console/**
 
- 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
