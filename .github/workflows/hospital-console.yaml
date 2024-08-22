@@ -2,8 +2,7 @@ name: Build hospital-console Image
 
 on:
   push:
-    paths:
-      - hospital-management/hospital-console-fxml/**
+    paths: hospital-management/hospital-console-fxml/**
 
 jobs:
   build-and-push:
@@ -38,7 +37,7 @@ jobs:
       - name: License finder
         run: |
           cd hospital-management/api-gateway
-          docker pull samruddhipatil12/license-finder
-          docker run -v "$(pwd):/scan" samruddhipatil12/license-finder
+          docker pull samruddhipatil12/license-finder:latest
+          docker run -v "$(pwd):/scan" samruddhipatil12/license-finder:latest
         continue-on-error: true
         
