@@ -8,4 +8,6 @@ WORKDIR /app
 COPY . /app
 
 # Start the application
-CMD ["java", "-jar", "hospital-console-fxml.jar"]
+CMD ["java", "-jar", "hospital-console.jar"]
+
+
