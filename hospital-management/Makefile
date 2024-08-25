@@ -1,7 +1,7 @@
 # Variables
 SERVICES := api-gateway appointment-service case-service directory-service patient-service
 LIBRARY := hospital-console-fxml
-REPO := https://github.com/phodade/the-mono-repo.git
+REPO := https://github.com/samruddhipatil12/the-mono-repo
 
 # Main target 
 default: clone status pull stash build_lib build_services build_images push_images
