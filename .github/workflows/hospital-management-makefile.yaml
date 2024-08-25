@@ -2,8 +2,7 @@ name: CI Pipeline for Hospital Management
 
 on:
   push:
-    paths:
-      - hospital-management/**
+    paths: hospital-management/**
 
 jobs:
   build_and_deploy:
